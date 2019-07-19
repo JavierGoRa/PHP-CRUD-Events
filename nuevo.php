@@ -19,8 +19,6 @@
 
     var_dump($image);
 
-    exit;
-
     $plantilla = new plantilla();
 
 	$events = new usuarios();
@@ -42,6 +40,9 @@
     var_dump($newEvent); */
 
     $events->insertar($newEvent);
+
+    header("location:index.php");
+
 
     /* if ($events->insertar($newEvent) == false) {
         $plantilla->indexError('This email contact already exists');

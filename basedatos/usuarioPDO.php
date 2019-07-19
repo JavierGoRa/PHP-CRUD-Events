@@ -176,7 +176,7 @@
                 $this->event->bindValue(':sesion', $newEvent->getIdCompany());
                 $this->event->execute();
             } catch (PDOException $e) {
-                exit($e->getMessage());            
+                exit('<script type="text/javascript">alert("That email contact already exists, try another.");window.location.href="javascript:history.go(-1)"</script>');
             }
         }
 
@@ -186,57 +186,9 @@
                 $this->events->bindValue(':id', $id);
                 $this->events->execute();
             } catch (PDOException $e) {
-                    exit('<script type="text/javascript">alert("Actualmente existe un problema. Pruebe mas tarde");window.location.href="./index.php"</script>');
-                    //header("location:index.php");
+                exit('<script type="text/javascript">alert("Actualmente existe un problema. Pruebe mas tarde");window.location.href="./index.php"</script>');
+                //header("location:index.php");
             }
-        }
-        
-        public function ordenarPorNombre(){
-
-            try {
-                $this->usuarios = $this->pdo->prepare("select * from usuarios order by nombre");
-                $this->usuarios->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'usuario');
-                $this->usuarios->execute();
-            } catch (PDOException $e){
-                exit($e->getMessage());
-            }
-
-        }
-
-        public function ordenarPorApellidos(){
-
-            try {
-                $this->usuarios = $this->pdo->prepare("select * from usuarios order by apellidos");
-                $this->usuarios->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'usuario');
-                $this->usuarios->execute();
-            } catch (PDOException $e){
-                exit($e->getMessage());
-            }
-
-        }
-
-        public function ordenarPorUsername(){
-
-            try {
-                $this->usuarios = $this->pdo->prepare("select * from usuarios order by username");
-                $this->usuarios->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'usuario');
-                $this->usuarios->execute();
-            } catch (PDOException $e){
-                exit($e->getMessage());
-            }
-
-        }
-
-        public function ordenarPorPerfil(){
-
-            try {
-                $this->usuarios = $this->pdo->prepare("select * from usuarios order by idPerfil");
-                $this->usuarios->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'usuario');
-                $this->usuarios->execute();
-            } catch (PDOException $e){
-                exit($e->getMessage());
-            }
-
         }
 
         public function buscar($expSearch, $idCompany){
@@ -268,7 +220,22 @@
         public function getEventKey($id){
             
             try {
-                $this->usuarios = $this->pdo->prepare("select * from t_events where id = :id");
+                $this->usuarios = $this->pdo->prepare(
+                    "select 
+                        id,
+                        name,
+                        locations,
+                        date,
+                        date_start,
+                        date_end,
+                        details,
+                        email_contact,
+                        count_clicks,
+                        id_category category,
+                        link_info,
+                        link_tickets,
+                        photo,
+                        id_company from t_events where id = :id");
                 $this->usuarios->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'event');
                 $this->usuarios->bindValue(':id', $id);
                 $this->usuarios->execute();
@@ -314,7 +281,7 @@
                 $this->events->bindValue(':link_tickets', $event->getLinkTickets());
                 $this->events->execute();
             } catch (PDOException $e){
-                exit('<script type="text/javascript">alert("Nombre de usuario o Email ya existentes");window.location.href="javascript:history.go(-1)"</script>');                
+                exit('<script type="text/javascript">alert("This email contact already exists");window.location.href="javascript:history.go(-1)"</script>');                
             }
         } 
 

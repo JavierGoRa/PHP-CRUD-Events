@@ -155,33 +155,32 @@
 
 ?>
 
-                <!DOCTYPE html>
-                <html lang="es">
-                    <?=$this->showHead();?>
-                <body>
-                    <div class="container">
-                        <?=$this->cabecera();?>
-                        <?=$this->showNavegacion();?>
-                        <section>
-                            <article>
-                                    <table class="table">
-                                        <thead>
-                                            <?= $events->headerTableEvents() ?>
-                                        </thead>
-                                        <tbody>
-                                            <?php $events->showEvents() ?>
-                                        </tbody>
-                                    </table>
-
-                            </article>
-                        </section>
-                        <?=$this->showFooter();?>
-                    </div>
-                    <?=$this->showScripts();?>
-                </body>
-                </html>
+            <!DOCTYPE html>
+            <html lang="es">
+                <?=$this->showHead();?>
+            <body>
+                <div class="container">
+                    <?=$this->cabecera();?>
+                    <?=$this->showNavegacion();?>
+                    <section>
+                        <article>
+                            <table class="table">
+                                <thead>
+                                    <?= $events->headerTableEvents() ?>
+                                </thead>
+                                <tbody>
+                                    <?php $events->showEvents() ?>
+                                </tbody>
+                            </table>
+                        </article>
+                    </section>
+                    <?=$this->showFooter();?>
+                </div>
+                <?=$this->showScripts();?>
+            </body>
+            </html>
             
-            <?php
+<?php
             
         }
 
@@ -316,7 +315,8 @@
         }
 
         public function formularioActualizar($key, event $event, $category){
-            var_dump($event);
+            /* var_dump($event);
+            var_dump($category); */
 ?>
             <section>
     
@@ -356,8 +356,16 @@
                         <select class="form-control" name="id_category">
                             <option value="0">-- Select your category --</option>
 
-                            <?php foreach ($category as $tipo => $result): ?>
-                                <option value="<?=$tipo+1?>"><?=$result[0]?></option>
+                            <?php foreach ($category as $tipo => $result): ?>    
+                                <?php if ($tipo+1 === $event->getCategory()): ?>
+                            
+                                    <option selected value="<?=$tipo+1?>"><?=$result[0]?></option>
+                            
+                                <?php else: ?>
+
+                                    <option value="<?=$tipo+1?>"><?=$result[0]?></option>
+
+                                <?php endif; ?>
                             <?php endforeach; ?>
 
                         </select>
@@ -420,15 +428,11 @@
                     </div>
                     <div class="form-group">
                         <label for="">Category</label>
-                        <select disabled  class="form-control" name="id_category">
-                        
-                            <?php foreach ($category as $tipo => $result): ?>
-                            <?php if ($result[0] == $event->getCategory()):?>
-                                <option><?=$result[0]?></option>
+                        <?php foreach ($category as $tipo => $result): ?>
+                            <?php if ($tipo+1 === $event->getCategory()): ?>
+                                <input disabled type="text" name="email_contact"  class="form-control" required="required" value="<?=$result[0]?>">
                             <?php endif; ?>
-                            <?php endforeach; ?>
-
-                        </select>
+                        <?php endforeach; ?>
                     </div>
                     <div class="form-group">
                         <label for="">Link Info</label>
