@@ -34,11 +34,6 @@
 
 		$plantilla->index($events, $_SESSION['id'], $countEvents[0]);
  
-
-		/* $file = file_get_contents('SelskApp-iconpng.png');
-		$hola = base64_encode($file);
-		echo "<img src='data:image/jpg;base64,".$hola."' />"; */
-
 	}
 
 ?>

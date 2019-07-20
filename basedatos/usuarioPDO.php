@@ -246,10 +246,6 @@
 
         }
 
-        public function getArrayTipoPerfil(){
-            return (array("Administrador","Editor","Registrado"));
-        }
-
         public function actualizarDato($id, $event){
             try {
                 $this->events = $this->pdo->prepare(
@@ -367,6 +363,34 @@
             }
         }
 
+        public function ordenar($idCompany, $criterio){
+            var_dump($criterio);
+            try {
+                $this->usuarios = $this->pdo->prepare(
+                    "select e.id, 
+                        e.name name, 
+                        e.locations, 
+                        e.date, 
+                        e.date_start, 
+                        e.date_end, 
+                        e.details, 
+                        e.email_contact, 
+                        e.count_clicks, 
+                        c.name category, 
+                        e.link_info, 
+                        e.link_tickets 
+                    from t_events e 
+                        inner join t_category c on (e.id_category = c.id)
+                    where e.id_company = :id_company 
+                    order by :criterio ;");
+                $this->usuarios->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'event');
+                $this->usuarios->bindValue(':id_company',$idCompany);
+                $this->usuarios->bindValue(':criterio',$criterio);
+                $this->usuarios->execute();
+            } catch (PDOException $e){
+                exit($e->getMessage());
+            }
+        }
 
         public function acciones($key){
 
