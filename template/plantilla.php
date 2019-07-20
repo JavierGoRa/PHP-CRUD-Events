@@ -5,7 +5,7 @@
         private $subCabecera;
 
         CONST TITULO = "SelskApp";
-		CONST CABECERA = "SelskApp Business"  ;
+		CONST CABECERA = "SelskApp Business Management"  ;
 		CONST PIE = "Francisco Javier González Ramírez";
 
         public function __construct($subCabecera = null){

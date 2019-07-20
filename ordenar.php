@@ -8,18 +8,26 @@
   $criterio = $_GET['criterio'];
   $id = $_GET['id'];
 
-  var_dump($criterio);
-  var_dump($id);
-
-  $plantilla = new plantilla("Práctica 2");
-
   $events = new usuarios();
 
+  $nameCompany = $events->getNameCompany($id);
+
+  $plantilla = new plantilla($nameCompany[0]);
+
   $countEvents = $events->getCountEvents($id);
- 
-  $events->ordenar($id, $criterio);
+
+  switch ($criterio) {
+    case 'name':
+      $events->ordenarPorNombre($id);
+    break;
+    case 'locations':
+      $events->ordenarPorLocalizacion($id);
+    break;
+    case 'category':
+      $events->ordenarPorCategoria($id);
+    break;
+  }
   
   $plantilla->index($events, $id, $countEvents);
-
 
 ?>
