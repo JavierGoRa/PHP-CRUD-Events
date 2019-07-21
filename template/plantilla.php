@@ -56,32 +56,31 @@
             
             <section>
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                    <a class="nav-link" href="index.php">HOME <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="formNuevo.php">Add event</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Order
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="ordenar.php?criterio=name&id=<?=$session?>">Name</a>
-                            <a class="dropdown-item" href="ordenar.php?criterio=category&id=<?=$session?>">Category</a>
-                            <a class="dropdown-item" href="ordenar.php?criterio=locations&id=<?=$session?>">Location</a>
-                        </div>
-                        </li>
-                    </ul>
-                    <!-- <form class="form-inline my-2 my-lg-0" method="POST">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search" name="expBusqueda">
-                        <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit" formaction="buscar.php">Buscar</button>
-                    </form> -->
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                            <a class="nav-link" href="index.php">HOME <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link" href="formNuevo.php">Add event</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Order
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="ordenar.php?criterio=name&id=<?=$session?>">Name</a>
+                                    <a class="dropdown-item" href="ordenar.php?criterio=category&id=<?=$session?>">Category</a>
+                                    <a class="dropdown-item" href="ordenar.php?criterio=locations&id=<?=$session?>">Location</a>
+                                </div>
+                            </li>
+                        </ul>
+                        <form class="form-inline my-2 my-lg-0" method="POST">
+                            <input class="form-control mr-sm-2" type="search" aria-label="Search" name="expBusqueda">
+                            <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit" formaction="buscar.php?id=<?=$session?>">Search</button>
+                        </form>
                     </div>
                     <a class="nav-link" href="logout.php">Logout</a>
-
                 </nav>
             </section>
 
@@ -143,45 +142,6 @@
 
 ?>
 
-                        </article>
-                    </section>
-                    <?=$this->showFooter();?>
-                </div>
-                <?=$this->showScripts();?>
-            </body>
-            </html>
-            
-<?php
-            
-        }
-
-        public function search($events){
-            /* $mierda = $usuarios->getArrayCategory();
-            foreach ($mierda as $key => $value) {
-                var_dump($value[0]);
-            } */
-            
-            //var_dump($events);
-
-?>
-
-            <!DOCTYPE html>
-            <html lang="es">
-                <?=$this->showHead();?>
-            <body>
-                <div class="container">
-                    <?=$this->cabecera();?>
-                    <?=$this->showNavegacion();?>
-                    <section>
-                        <article>
-                            <table class="table">
-                                <thead>
-                                    <?= $events->headerTableEvents() ?>
-                                </thead>
-                                <tbody>
-                                    <?php $events->showEvents() ?>
-                                </tbody>
-                            </table>
                         </article>
                     </section>
                     <?=$this->showFooter();?>

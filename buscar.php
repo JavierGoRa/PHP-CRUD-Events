@@ -5,14 +5,22 @@
 
   require_once ("template/plantilla.php");
 
-  $plantilla = new plantilla("Práctica 2");
-
   $expresion = $_POST['expBusqueda'];
+  $id = $_GET["id"];
 
+  var_dump($expresion);
+  var_dump($id);
+    
   $events = new usuarios();
 
-  $events->buscar($expresion, $_COOKIE['session']);
+  $nameCompany = $events->getNameCompany($id);
 
-  $plantilla->search($events);
+  $plantilla = new plantilla($nameCompany[0]);
+
+  $countEvents = $events->getCountEvents($id);
+
+  $events->buscar($expresion, $id);
+
+  $plantilla->index($events, $id, $countEvents);
 
 ?>

@@ -91,7 +91,7 @@
 
             $cabecera = $this->arrayTableEvents();
 
-            echo "<legend>All Your Events</legend>";
+            echo "<br>";
             echo "<tr>";
             foreach ($cabecera as $columna) {
                 echo "<th> $columna </th>";
@@ -192,25 +192,28 @@
         }
 
         public function buscar($expSearch, $idCompany){
-            var_dump($expSearch);
             try {
-                $this->events = $this->pdo->prepare(
-                    "select * from t_events
-                        where name like '%:expSearch%'
-                        or locations like '%:expSearch%'
-                        or date like '%:expSearch%'
-                        or date_start like '%:expSearch%'
-                        or date_end like '%:expSearch%'
-                        or details like '%:expSearch%'
-                        or email_contact like '%:expSearch%'
-                        or link_info like '%:expSearch%'
-                        or link_tickets like '%:expSearch%'
-                        and id_company = :idCompany"
+                $events = $this->pdo->prepare(
+                    "select e.id, 
+                        e.name, 
+                        e.locations, 
+                        e.date, 
+                        e.date_start, 
+                        e.date_end, 
+                        e.details, 
+                        e.email_contact, 
+                        e.count_clicks, 
+                        c.name category, 
+                        e.link_info, 
+                        e.link_tickets 
+                    from t_events e 
+                        inner join t_category c on (e.id_category = c.id)
+                    where e.id_company = 1;"
                 );
-                $this->events->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'event');
-                $this->events->bindValue(':expSearch', $expSearch);
-                $this->events->bindValue(':idCompany', $idCompany);
-                $this->events->execute();
+                //$events->bindParam(':expSearch', $expSearch);
+                //$events->bindParam(':idCompany', $idCompany);
+                $events->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'event');
+                $events->execute();
             } catch (PDOException $e){
                 exit($e->getMessage());
             }

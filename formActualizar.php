@@ -24,7 +24,7 @@
 
 	<div class="container">
 		<?=$plantilla->cabecera();?>
-		<?=$plantilla->showNavegacion();?>
+		<?=$plantilla->showNavegacion($id);?>
 		<section>
 		<?=$plantilla->formularioActualizar($id, $events->getEventKey($id), $events->getArrayCategory());?>
 		</section>

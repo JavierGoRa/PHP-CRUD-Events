@@ -55,9 +55,6 @@ BEGIN
 END$$
 DELIMITER ;
 
-insert into t_company values (null, 'Gato cafe y copas', 'Puerto Serrano', 'Cádiz', '20502409W','hola@hola.hola', password('mierda'));
-insert into t_company values (null, 'Latino cafe y copas', 'Puerto Serrano', 'Cádiz', '20502490W','adios@adios.adios', password('mierda'));
-
 insert into t_category  values (null, 'Concerts');
 insert into t_category  values (null, 'Exhibition');
 insert into t_category  values (null, 'Theatre');
@@ -68,6 +65,3 @@ insert into t_category  values (null, 'Art');
 insert into t_category  values (null, 'Nature');
 insert into t_category  values (null, 'Healthy');
 insert into t_category  values (null, 'Nature');
-
-insert into t_events values (null, 'Paella Motera', 'Puerto Serrano', '2019-04-12', '2019-04-12 10:00:00', '2019-04-12 23:00:00', 'este evento es una mierda illo', 'emailparacontactar@email.com', 1, 1, 'enlace1.com', 'enlace2.com', 'QzpceGFtcHBcdG1wXHBocEY2NTEudG1w', 1, 1);
-insert into t_events values (null, 'CayoCoco', 'Puerto Serrano', '2019-04-12', '2019-04-12 10:00:00', '2019-04-12 23:00:00', 'este evento es la ostia illo illo illo', 'emailparamierda@email.com', 1, 6, 'enlace1.com', 'enlace2.com', 'QzpceGFtcHBcdG1wXHBocEY2NTEudG1w', 2, 2)
