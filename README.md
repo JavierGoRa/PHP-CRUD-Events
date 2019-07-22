@@ -2,7 +2,7 @@
 
 Welcome to my end of cycle project.
 
-This project is a part of my end of cycle project (Developer Web Applications)
+This project is a part of my end of cycle project (Web Applications Development)
 
 You can read full document's project <a href="https://docs.google.com/document/d/1nmygZ04PyNLmKjzvUb2DXH9FGS23hvz8nY2M2k80DvA/edit?usp=sharing"> HERE </a>.
 
