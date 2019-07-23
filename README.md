@@ -2,9 +2,17 @@
 
 Welcome to my end of cycle project.
 
-This project is a part of my end of cycle project (Web Applications Development)
+This project is a part of my end of cycle project (Web Applications Development).
 
 You can read full document's project <a href="https://docs.google.com/document/d/1nmygZ04PyNLmKjzvUb2DXH9FGS23hvz8nY2M2k80DvA/edit?usp=sharing"> HERE </a>.
+
+## Functions
+
+You can register or login on this application.
+
+Can add an event with date, description, location, email contact, links and an image will be saved to base64.
+
+Can also delete, update and list this events.
 
 
 ## Authors
@@ -14,7 +22,7 @@ You can read full document's project <a href="https://docs.google.com/document/d
 *This is a class job*
 
 
-# Contact
+## Contact
 
 Email: javigoracontact@gmail.com OR javigora97@gmail.com
 
